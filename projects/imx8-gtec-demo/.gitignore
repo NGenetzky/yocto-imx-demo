@@ -1,0 +1,5 @@
+# Extra files created by BSP fsl-setup-release.sh
+build/conf/bblayers.conf.org
+build/conf/local.conf.org
+build/conf/local.conf.sample
+
