@@ -18,3 +18,20 @@ Setup environment to build with existing configuration:
 cd ~/yocto-imx-demo/bsp/imx
 source setup-environment  ../../projects/imx8-gtec-demo/build/
 ```
+
+# Bake some bits
+
+Here are a few things you could build:
+
+```bash
+# Standard Yocto
+bitbake core-image-minimal
+
+# ESDK and buildtools from Yocto
+bitbake meta-toolchain
+bitbake meta-ide-support
+
+# FSL specific image
+bitbake imx-gpu-sdk
+bitbake fsl-image-gui
+```
