@@ -3,3 +3,11 @@ build/conf/bblayers.conf.org
 build/conf/local.conf.org
 build/conf/local.conf.sample
 
+# Logs, caches, build artifacts
+build/bitbake-cookerdaemon.log
+build/cache/
+build/conf/sanity_info
+build/sstate-cache/
+build/tmp/
+
+
