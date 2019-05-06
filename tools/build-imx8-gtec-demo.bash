@@ -11,8 +11,10 @@ main(){
 
     cd "${DEFAULT_BSP}"
 
+    # Some hacky stuff is required to use setup-environment
     set +u # They use unset variables (gross)
     source setup-environment "${relative_builddir}"
+
 
     # Standard Yocto
     bitbake core-image-minimal
