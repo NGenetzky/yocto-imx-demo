@@ -6,6 +6,11 @@ DEFAULT_DEST="${SCRIPTDIR}/../bsp/imx/"
 main(){
     local dest="${1-${DEFAULT_DEST}}"
 
+    if [ ! -x "$(command -v repo)" ]; then
+        echo 'ERROR: Please setup repo tool (./tools/setup-repo-tool.bash)'
+        return 1
+    fi
+
     mkdir -p "${dest}"
     pushd "${dest}"
     repo init \
