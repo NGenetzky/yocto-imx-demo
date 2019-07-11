@@ -1,9 +1,10 @@
 #!/bin/bash
 
 SCRIPTDIR="$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd -P)"
+D_PROJECTS="${SCRIPTDIR}/../projects/"
 
 DEFAULT_BSP="${SCRIPTDIR}/../bsp/imx/"
-DEFAULT_BUILDDIR="${SCRIPTDIR}/../projects/imx8-gtec-demo/build/"
+DEFAULT_PROJNAME="bsp-imx8"
 
 warn () {
     echo "$0:" "$@" >&2
@@ -17,13 +18,17 @@ die () {
 }
 
 main(){
-    local bspdir builddir relative_builddir
+    local projname bspdir builddir relative_builddir
+    projname="${1-${DEFAULT_PROJNAME}}"
 
     bspdir="${DEFAULT_BSP}"
     [ -d "${bspdir}" ] || die 1 "Please setup-bsp-imx.bash"
 
-    builddir="${DEFAULT_BUILDDIR}"
-    [ -d "${builddir}" ] && die 2 "Please remove builddir ('${builddir}')."
+    projdir="${D_PROJECTS}/${projname}/"
+    [ -d "${projdir}" ] || mkdir "${projdir}"
+
+    builddir="${projdir}/build/"
+    [ -d "${builddir}" ] && warn "reinit builddir ('${builddir}')."
 
     relative_builddir="$(realpath --relative-to "${bspdir}" "${builddir}")"
 
