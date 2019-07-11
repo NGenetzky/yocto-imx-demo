@@ -13,15 +13,13 @@ install_repo_tool(){
 
     bindir="${DEFAULT_BINDIR}"
     [ -d "${bindir}" ] || mkdir "${bindir}"
-    PATH="${bindir}:$PATH"
-    export PATH
-
     curl https://storage.googleapis.com/git-repo-downloads/repo > "${bindir}/repo"
     chmod a+x "${bindir}/repo"
 
-    which repo > /dev/null
     if [ ! -x "$(command -v repo)" ]; then
-        echo 'repo tool setup failed'
+        echo 'Reload terminal, and execute script again'
+        printf "otherwise Please ensure %s is in your PATH\n" \
+            "${bindir}"
         return 1
     fi
     return 0
